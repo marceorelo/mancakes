@@ -17,7 +17,7 @@ function App() {
 
   const [state, setState] = useState([])
  
-  const context = useContext(CartContext)
+ // const context = useContext(CartContext)
 
 
   return (

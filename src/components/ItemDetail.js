@@ -7,46 +7,44 @@ import CartContext  from '../Context/CartContext'
 import ItemCart from './ItemCart'
 
 const ItemDetail = ({data}) => {  
-    console.log("itemdetail")
-    const context = useContext(Contexts.cartContext)
-   // const [cart, totalPrice] = useCartContext()
-    const [cart, setCart] = useState()
-    console.log(context.value)
-    let navigate = useNavigate();  
-      // context.func([...context.value, data])        
-       // navigate("/cart")
- 
-      function addProduct (item, newQuantity)  {
-    //    console.log('item:',item)
-      
-       const newCart = cart.filter(prod => prod.id !== item.id)
-       // 
-        newCart.push({...item, quantity:newQuantity})
-        setCart(newCart)
-        console.log('cart',cart)
-        //
+  console.log("itemdetail",data)
+  const context = useContext(Contexts.cartContext)
+ const [state, setState] = useState()
+ console.log("STATE",state)
+  let navigate = useNavigate();  
+  function handleCheckout(e) {
+      context.func([...context.value,{
+          buyer: {
+            name: "Test",
+            phone: 12123,
+            email: "test@test"
+          },
+          items:[{
+            title: state.title,
+            price: state.price
+          }],
+          total: state.price
+        }])        
+  
+      //    context.func([...context.value, state])        
+      navigate("/cart")
+  }
+  
 
-       // navigate("/cart")
-      }
-    
-
-                    return (
-                         <>                 
-                                          
-                      <p>hola</p>
-                      <h1>{data.title}</h1>
-                        <img width="300" src={data.image}></img>
-                        <article></article>
-                        <h2>$ {data.price}.00</h2>
-                    
-                      <div>
-                        <ItemCount />
-                      </div>
-                        <button onClick={addProduct(data,2)} variant="outline-primary">CHECKOUT</button>
-                        </> 
-                        
-                        )
-       
+                  return (
+                       <>                 
+                    <p>hola</p>
+                    <h1>{state.title}</h1>
+                      <img width="300" src={state.image}></img>
+                      <article></article>
+                      <h2>$ {state.price}.00</h2>
+                  
+                    <div>
+                      <ItemCount />
+                    </div>
+                      <button onClick={handleCheckout} variant="outline-primary">CHECKOUT</button>
+                      </> 
+                      )
+     
 }
-//{addProduct(data,2)}
-export default ItemDetail;
+export default ItemDetail

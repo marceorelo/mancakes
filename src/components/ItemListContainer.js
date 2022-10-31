@@ -8,13 +8,13 @@ import { filterCollection } from "../utils/firebase"
 const ItemListContainer = () => {
    
     const {id} = useParams();
-    const [items, setItems] = useState([])
+    const [state, setState] = useState([])
     const [loading, setLoading] = useState(true)
    
     useEffect(()=>{
         const res = filterCollection("almacen",["categoriaId","==",id])
         res.then((res)=>{
-            setItems(res.docs.map((value)=>value.data()));
+            setState(res.docs.map((value)=>value.data()));
             setLoading(false)
         })
       },[])
@@ -22,7 +22,7 @@ const ItemListContainer = () => {
     return(
         <>
             <div className='grid'>
-                {items.map((item)=>{
+                {state.map((item)=>{
                     return (
                         <>
                         {loading && <h1>LOADING</h1>}   

@@ -5,14 +5,14 @@ import { filterCollection } from "../utils/firebase"
 import { useNavigate } from "react-router-dom"
 import Abstract from './Abstract'
 import Contexts from "../Context/Items"
+import ItemCount from "./ItemCount"
 
-
-const ItemDetailContainer = ({items}) => {
+const ItemDetailContainer = () => {
     const context = useContext(Contexts.cartContext)
 
     const {id} = useParams()
     let navigate = useNavigate();
-    const [state, setState] = useState({items})
+    const [state, setState] = useState({})
 
 console.log(id)
 useEffect(()=>{
@@ -26,12 +26,46 @@ useEffect(()=>{
     }
   }, [])
 
+  function handleCheckout(e) {
+    context.func([...context.value,{
+      buyer: {
+        name: "Test",
+        phone: 12123,
+        email: "test@test"
+      },
+      items:[{
+        title: state.title,
+        price: state.price,
+        image: state.image
+      }],
+      total: state.price
+    }])
+    navigate("/cart")
+}
 
+const handleClick = (e)=>{
+    console.log(e);
+    let itemId 
+    if(e.target.id === "forward"){
+        itemId = parseInt(id) + 1
+    }else{
+        itemId = parseInt(id) > 1 ? parseInt(id) - 1 : parseInt(id)
+    }
+    navigate(`/items/${itemId}`)
+}
  console.log("itemdetailcontainer")
  console.log(state) 
     return (
           <>  
-          <ItemDetail data={state} />
+        <h1>{state.title}</h1>
+          <img width="300" src={state.image}></img>
+          <article></article>
+          <h2>$ {state.price}.00</h2>
+      
+        <div>
+          <ItemCount />
+        </div>
+          <button onClick={handleCheckout} variant="outline-primary">CHECKOUT</button>
           </>
     )
   }
