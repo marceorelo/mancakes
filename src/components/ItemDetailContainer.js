@@ -13,7 +13,9 @@ const ItemDetailContainer = () => {
     const {id} = useParams()
     let navigate = useNavigate();
     const [state, setState] = useState({})
-
+    const [count, setCount] = useState(0);
+    let stock = 15;
+    let acumulador = 0
 console.log(id)
 useEffect(()=>{
     console.log(id)
@@ -31,30 +33,33 @@ useEffect(()=>{
       buyer: {
         name: "Test",
         phone: 12123,
-        email: "test@test"
+        email: "test@test",
+       
       },
       items:[{
         title: state.title,
         price: state.price,
-        image: state.image
+        image: state.image, 
+        cantidad: count,
+        subtotal: state.price * count
       }],
-      total: state.price
-    }])
+  //    total: 0
+    }])  
     navigate("/cart")
 }
 
-const handleClick = (e)=>{
-    console.log(e);
-    let itemId 
-    if(e.target.id === "forward"){
-        itemId = parseInt(id) + 1
-    }else{
-        itemId = parseInt(id) > 1 ? parseInt(id) - 1 : parseInt(id)
-    }
-    navigate(`/items/${itemId}`)
+
+function handleClickMas () {
+  if (count < stock) {
+  setCount(count + 1)
+  }
 }
- console.log("itemdetailcontainer")
- console.log(state) 
+function handleClickMenos () {
+  if (count > 0) {
+  setCount(count - 1)
+  }
+}
+
     return (
           <>  
         <h1>{state.title}</h1>
@@ -62,9 +67,10 @@ const handleClick = (e)=>{
           <article></article>
           <h2>$ {state.price}.00</h2>
       
-        <div>
-          <ItemCount />
-        </div>
+          <div>
+      <button onClick={handleClickMas}> + </button>  {count}  <button onClick={handleClickMenos}> - </button>
+    </div>
+
           <button onClick={handleCheckout} variant="outline-primary">CHECKOUT</button>
           </>
     )

@@ -37,7 +37,7 @@ function NavBar()  {
                       <Link to={`/`} className="nav-link">Contacto</Link>
                       </li>
                       <li className="nav-item">
-                      <Link to={`/carrito`} className="nav-link"><CartWidget /> </Link>
+                      <Link to={`/cart`} className="nav-link"><CartWidget /> </Link>
                       </li>
                     </ul>    
                     
