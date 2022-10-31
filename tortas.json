@@ -1,0 +1,44 @@
+[
+{
+    "id":6,
+    "nombre": "Box Dulce Especial",
+    "foto": "/img/img1.jpg",
+    "precio": 2500  
+},
+{
+    "id":7,
+    "nombre": "Pavlova Frutos Rojos",
+    "foto": "/img/img2.jpg",
+    "precio": 2100  
+},
+{
+    "id":8,
+    "nombre": "Candy Cake",
+    "foto": "/img/img3.jpg",
+    "precio": 2150  
+},
+{
+    "id":9,
+    "nombre": "Chocolate Cake",
+    "foto": "/img/img4.jpg",
+    "precio": 2550  
+},
+{
+    "id":10,
+    "nombre": "Berry Cake",
+    "foto": "/img/img5.jpg",
+    "precio": 2600 
+},
+{
+    "id":11,
+    "nombre": "Manantiales Cake",
+    "foto": "/img/img6.jpg",
+    "precio": 2300  
+},
+{
+    "id":12,
+    "nombre": "Bombón Cake",
+    "foto": "/img/img8.jpg",
+    "precio": 2800 
+}
+]
